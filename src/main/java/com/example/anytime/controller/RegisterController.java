@@ -13,7 +13,7 @@ import java.util.List;
 import java.util.Optional;
 
 
-@CrossOrigin(origins = "http://localhost:4200")
+@CrossOrigin(origins = "https://anytime.herokuapp.com")
 @RestController
 public class RegisterController {
 
