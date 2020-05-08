@@ -1,2 +1,2 @@
-web: java $JAVA_OPTS -jar target/anytime-app-01.jar --p $PORT
+web: java $JAVA_OPTS -war target/anytime-app-01.war --p $PORT
 
