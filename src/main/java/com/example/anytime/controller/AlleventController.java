@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 import java.util.Optional;
 
-@CrossOrigin(origins = "https://anytime.herokuapp.com")
+@CrossOrigin(origins = "https://infinite-shore-94119.herokuapp.com")
 @RestController
 public class AlleventController {
 
