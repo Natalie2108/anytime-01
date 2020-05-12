@@ -654,6 +654,13 @@ class EventComponent {
         this.eventService.deleteevent().subscribe(() => {
             this.reloadAllallevents();
             this.reloadAlleventsbyevent();
+            sessionStorage.removeItem('eventname');
+            sessionStorage.removeItem('eventlocation');
+            sessionStorage.removeItem('eventdescription');
+            sessionStorage.removeItem('eventdateformatted');
+            sessionStorage.removeItem('eventdate');
+            sessionStorage.removeItem('idevent');
+            window.location.reload(true);
         });
     }
     findevent() {

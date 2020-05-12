@@ -1259,6 +1259,14 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
             _this10.reloadAllallevents();
 
             _this10.reloadAlleventsbyevent();
+
+            sessionStorage.removeItem('eventname');
+            sessionStorage.removeItem('eventlocation');
+            sessionStorage.removeItem('eventdescription');
+            sessionStorage.removeItem('eventdateformatted');
+            sessionStorage.removeItem('eventdate');
+            sessionStorage.removeItem('idevent');
+            window.location.reload(true);
           });
         }
       }, {
