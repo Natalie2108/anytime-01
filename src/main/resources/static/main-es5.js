@@ -1213,7 +1213,14 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
           var _this6 = this;
 
           this.alleventService.deleteallevents(idevent).subscribe(function () {
-            return _this6.reloadAllallevents();
+            _this6.reloadAllallevents();
+
+            sessionStorage.removeItem('eventname');
+            sessionStorage.removeItem('eventlocation');
+            sessionStorage.removeItem('eventdescription');
+            sessionStorage.removeItem('eventdateformatted');
+            sessionStorage.removeItem('eventdate');
+            window.location.reload(true);
           });
         }
       }, {
@@ -1259,13 +1266,6 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
             _this10.reloadAllallevents();
 
             _this10.reloadAlleventsbyevent();
-
-            sessionStorage.removeItem('eventname');
-            sessionStorage.removeItem('eventlocation');
-            sessionStorage.removeItem('eventdescription');
-            sessionStorage.removeItem('eventdateformatted');
-            sessionStorage.removeItem('eventdate');
-            window.location.reload(true);
           });
         }
       }, {

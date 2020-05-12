@@ -628,7 +628,15 @@ class EventComponent {
         });
     }
     deleteallevents(idevent) {
-        this.alleventService.deleteallevents(idevent).subscribe(() => this.reloadAllallevents());
+        this.alleventService.deleteallevents(idevent).subscribe(() => {
+            this.reloadAllallevents();
+            sessionStorage.removeItem('eventname');
+            sessionStorage.removeItem('eventlocation');
+            sessionStorage.removeItem('eventdescription');
+            sessionStorage.removeItem('eventdateformatted');
+            sessionStorage.removeItem('eventdate');
+            window.location.reload(true);
+        });
     }
     reloadAlleventsbyevent() {
         this.eventService.findAlleventsbyevent().subscribe(events => {
@@ -654,12 +662,6 @@ class EventComponent {
         this.eventService.deleteevent().subscribe(() => {
             this.reloadAllallevents();
             this.reloadAlleventsbyevent();
-            sessionStorage.removeItem('eventname');
-            sessionStorage.removeItem('eventlocation');
-            sessionStorage.removeItem('eventdescription');
-            sessionStorage.removeItem('eventdateformatted');
-            sessionStorage.removeItem('eventdate');
-            window.location.reload(true);
         });
     }
     findevent() {
