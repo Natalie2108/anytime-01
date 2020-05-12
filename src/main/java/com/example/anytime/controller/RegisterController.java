@@ -1,8 +1,7 @@
 package com.example.anytime.controller;
 
-import com.example.anytime.model.Allevent;
+import com.example.anytime.model.Userclazz;
 import com.example.anytime.model.Message;
-import com.example.anytime.model.User;
 import com.example.anytime.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -21,31 +20,31 @@ public class RegisterController {
     private UserService userService;
 
     @GetMapping("/test1")
-    public List<User> usernameCheck(@RequestBody User user) {
-        return (List<User>) userService.findByUsername(user.getUsername());
+    public List<Userclazz> usernameCheck(@RequestBody Userclazz userclazz) {
+        return (List<Userclazz>) userService.findByUsername(userclazz.getUsername());
     }
 
     @PostMapping("/register")
     //password and username check
-    public ResponseEntity<?> notBlank(@RequestBody User user) {
-        if (!usernameCheck(user).isEmpty()){
+    public ResponseEntity<?> notBlank(@RequestBody Userclazz userclazz) {
+        if (!usernameCheck(userclazz).isEmpty()){
             return new ResponseEntity<Message>(new Message("username already taken"), HttpStatus.BAD_REQUEST);}
-        if (user.getUsername().equals("") || user.getPassword().equals("")) {
+        if (userclazz.getUsername().equals("") || userclazz.getPassword().equals("")) {
             return new ResponseEntity<Message>(new Message("not saved, no valid entries"), HttpStatus.BAD_REQUEST);
         }
         else {
-            return new ResponseEntity<>(userService.save(user), HttpStatus.OK);
+            return new ResponseEntity<>(userService.save(userclazz), HttpStatus.OK);
         }
     }
 
 
     @GetMapping("/register")
-    public List<User> findAll() {
-        return (List<User>) userService.findAll();
+    public List<Userclazz> findAll() {
+        return (List<Userclazz>) userService.findAll();
     }
 
     @GetMapping("/register/{id}")
-    public Optional<User> userById(@PathVariable  int id) {
+    public Optional<Userclazz> userById(@PathVariable  int id) {
         return null;
     }
 
