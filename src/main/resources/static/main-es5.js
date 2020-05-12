@@ -1265,7 +1265,6 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
             sessionStorage.removeItem('eventdescription');
             sessionStorage.removeItem('eventdateformatted');
             sessionStorage.removeItem('eventdate');
-            sessionStorage.removeItem('idevent');
             window.location.reload(true);
           });
         }

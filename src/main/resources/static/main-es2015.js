@@ -659,7 +659,6 @@ class EventComponent {
             sessionStorage.removeItem('eventdescription');
             sessionStorage.removeItem('eventdateformatted');
             sessionStorage.removeItem('eventdate');
-            sessionStorage.removeItem('idevent');
             window.location.reload(true);
         });
     }
