@@ -2555,7 +2555,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
     HomepageComponent.ɵcmp = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineComponent"]({
       type: HomepageComponent,
       selectors: [["app-homepage"]],
-      decls: 80,
+      decls: 90,
       vars: 5,
       consts: [[1, "jumbotron", "jumbotron-fluid", 2, "background-color", "rgb(8, 148, 148)"], [1, "container"], [1, "title"], [1, "subtitle"], [1, "menubar"], [1, "navbar", "navbar-expand-lg", "navbar-dark", "bg-dark"], ["routerLink", "", 1, "navbar-brand"], ["type", "button", "data-toggle", "collapse", "data-target", "#navbarSupportedContent", "aria-controls", "navbarSupportedContent", "aria-expanded", "false", "aria-label", "Toggle navigation", 1, "navbar-toggler"], [1, "navbar-toggler-icon"], ["id", "navbarSupportedContent", 1, "collapse", "navbar-collapse"], [1, "navbar-nav", "mr-auto"], [1, "form-inline", "my-2", "my-lg-0"], ["type", "button", "data-toggle", "modal", "data-target", "#registerModal", 1, "btn", "btn-succes", "my-2", "my-sm-0"], ["type", "button", "data-toggle", "modal", "data-target", "#loginModal", 1, "btn", "btn-outline-light", "my-2", "my-sm-0"], ["id", "registerModal", "tabindex", "-1", "role", "dialog", "aria-labelledby", "registerModalLabel", "aria-hidden", "true", 1, "modal", "fade"], ["role", "document", 1, "modal-dialog"], [1, "modal-content"], [1, "modal-header"], ["id", "registerModalLabel", 1, "modal-title"], ["type", "button", "data-dismiss", "modal", "aria-label", "Close", 1, "close"], ["aria-hidden", "true"], [1, "modal-body"], [1, "form-group"], ["type", "text", "name", "username", "aria-describedby", "textHelp", "placeholder", "username", 1, "form-control", 3, "ngModel", "ngModelChange"], ["type", "password", "name", "password", "placeholder", "password", 1, "form-control", 3, "ngModel", "ngModelChange"], ["type", "submit", "data-toggle", "modal", "data-target", "#registeredModal", "data-dismiss", "modal", 1, "btn", "btn-dark", 3, "click"], ["id", "loginModal", "tabindex", "-1", "role", "dialog", "aria-labelledby", "loginModalLabel", "aria-hidden", "true", 1, "modal", "fade"], ["id", "loginModalLabel", 1, "modal-title"], ["type", "text", "aria-describedby", "textHelp", "name", "username", "placeholder", "username", 1, "form-control", 3, "ngModel", "ngModelChange"], ["type", "submit", "data-dismiss", "modal", 1, "btn", "btn-dark", 3, "click"], ["id", "registeredModal", "tabindex", "-1", "role", "dialog", "aria-labelledby", "registeredModalLabel", "aria-hidden", "true", 1, "modal", "fade"], [4, "ngFor", "ngForOf"], ["type", "button", "data-toggle", "modal", "data-target", "#loginModal", "data-dismiss", "modal", 1, "btn", "btn-dark"], [1, "homepage"], [2, "text-align", "center", "margin-top", "50px", "margin-bottom", "50px"], [4, "ngIf"]],
       template: function HomepageComponent_Template(rf, ctx) {
@@ -2845,6 +2845,26 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
           _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelement"](78, "br");
 
           _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](79, " Klik rechtsboven om in te loggen op je account. Ben je nieuw bij Anytime? Maak dan een account aan door op Registreren te klikken. ");
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelement"](80, "br");
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelement"](81, "br");
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelement"](82, "br");
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelement"](83, "br");
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelement"](84, "br");
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelement"](85, "br");
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelement"](86, "br");
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelement"](87, "br");
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelement"](88, "br");
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](89, " Gebouwd door Lynn Bruins, Sharona Jasper en Natalie Kersten. ");
 
           _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
 
