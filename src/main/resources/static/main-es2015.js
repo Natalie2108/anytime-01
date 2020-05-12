@@ -74,13 +74,13 @@ const routes = [
 class AppRoutingModule {
 }
 AppRoutingModule.ɵmod = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineNgModule"]({ type: AppRoutingModule });
-AppRoutingModule.ɵinj = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineInjector"]({ factory: function AppRoutingModule_Factory(t) { return new (t || AppRoutingModule)(); }, imports: [[_angular_router__WEBPACK_IMPORTED_MODULE_1__["RouterModule"].forRoot(routes)],
+AppRoutingModule.ɵinj = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineInjector"]({ factory: function AppRoutingModule_Factory(t) { return new (t || AppRoutingModule)(); }, imports: [[_angular_router__WEBPACK_IMPORTED_MODULE_1__["RouterModule"].forRoot(routes, { useHash: true })],
         _angular_router__WEBPACK_IMPORTED_MODULE_1__["RouterModule"]] });
 (function () { (typeof ngJitMode === "undefined" || ngJitMode) && _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵsetNgModuleScope"](AppRoutingModule, { imports: [_angular_router__WEBPACK_IMPORTED_MODULE_1__["RouterModule"]], exports: [_angular_router__WEBPACK_IMPORTED_MODULE_1__["RouterModule"]] }); })();
 /*@__PURE__*/ (function () { _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵsetClassMetadata"](AppRoutingModule, [{
         type: _angular_core__WEBPACK_IMPORTED_MODULE_0__["NgModule"],
         args: [{
-                imports: [_angular_router__WEBPACK_IMPORTED_MODULE_1__["RouterModule"].forRoot(routes)],
+                imports: [_angular_router__WEBPACK_IMPORTED_MODULE_1__["RouterModule"].forRoot(routes, { useHash: true })],
                 exports: [_angular_router__WEBPACK_IMPORTED_MODULE_1__["RouterModule"]]
             }]
     }], null, null); })();
@@ -166,7 +166,7 @@ __webpack_require__.r(__webpack_exports__);
 class AppModule {
 }
 AppModule.ɵmod = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵdefineNgModule"]({ type: AppModule, bootstrap: [_app_component__WEBPACK_IMPORTED_MODULE_2__["AppComponent"]] });
-AppModule.ɵinj = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵdefineInjector"]({ factory: function AppModule_Factory(t) { return new (t || AppModule)(); }, providers: [], imports: [[
+AppModule.ɵinj = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵdefineInjector"]({ factory: function AppModule_Factory(t) { return new (t || AppModule)(); }, providers: [{ provide: _angular_common__WEBPACK_IMPORTED_MODULE_10__["LocationStrategy"], useClass: _angular_common__WEBPACK_IMPORTED_MODULE_10__["HashLocationStrategy"] }], imports: [[
             _angular_platform_browser__WEBPACK_IMPORTED_MODULE_0__["BrowserModule"],
             _angular_common__WEBPACK_IMPORTED_MODULE_10__["CommonModule"],
             _app_routing_module__WEBPACK_IMPORTED_MODULE_7__["AppRoutingModule"],
@@ -205,7 +205,7 @@ AppModule.ɵinj = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵdefineInjector
                     _angular_common_http__WEBPACK_IMPORTED_MODULE_3__["HttpClientModule"],
                     _angular_forms__WEBPACK_IMPORTED_MODULE_4__["FormsModule"]
                 ],
-                providers: [],
+                providers: [{ provide: _angular_common__WEBPACK_IMPORTED_MODULE_10__["LocationStrategy"], useClass: _angular_common__WEBPACK_IMPORTED_MODULE_10__["HashLocationStrategy"] }],
                 bootstrap: [_app_component__WEBPACK_IMPORTED_MODULE_2__["AppComponent"]]
             }]
     }], null, null); })();
@@ -233,16 +233,16 @@ class AlleventService {
         this.http = http;
     }
     findAllallevents() {
-        return this.http.get('http://localhost:8080/allevent');
+        return this.http.get('/allevent');
     }
     saveallevents(allevents) {
-        return this.http.post('http://localhost:8080/allevent', allevents);
+        return this.http.post('/allevent', allevents);
     }
     deleteallevents(idevent) {
-        return this.http.delete('http://localhost:8080/allevent/' + idevent);
+        return this.http.delete('/allevent/' + idevent);
     }
     findevent(allevent) {
-        return this.http.post('http://localhost:8080/findevent', allevent);
+        return this.http.post('/findevent', allevent);
     }
 }
 AlleventService.ɵfac = function AlleventService_Factory(t) { return new (t || AlleventService)(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵinject"](_angular_common_http__WEBPACK_IMPORTED_MODULE_1__["HttpClient"])); };
@@ -443,7 +443,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "EventService", function() { return EventService; });
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/__ivy_ngcc__/fesm2015/core.js");
 /* harmony import */ var _event__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./event */ "./src/app/grouppage/event.ts");
-/* harmony import */ var _user__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../user */ "./src/app/user.ts");
+/* harmony import */ var _userclazz__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../userclazz */ "./src/app/userclazz.ts");
 /* harmony import */ var _allevent__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./allevent */ "./src/app/grouppage/allevent.ts");
 /* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @angular/common/http */ "./node_modules/@angular/common/__ivy_ngcc__/fesm2015/http.js");
 
@@ -461,50 +461,50 @@ class EventService {
         let allevent = new _allevent__WEBPACK_IMPORTED_MODULE_3__["Allevent"]();
         allevent.idevent = Number(sessionStorage.getItem('idevent'));
         event.allevent = allevent;
-        return this.http.post('http://localhost:8080/eventsbyevent', event);
+        return this.http.post('/eventsbyevent', event);
     }
     findAlleventsbyuser() {
         let event = new _event__WEBPACK_IMPORTED_MODULE_1__["Event"]();
-        let user = new _user__WEBPACK_IMPORTED_MODULE_2__["User"]();
-        user.iduser = Number(sessionStorage.getItem('iduser'));
-        event.user = user;
-        return this.http.post('http://localhost:8080/eventsbyuser', event);
+        let userclazz = new _userclazz__WEBPACK_IMPORTED_MODULE_2__["Userclazz"]();
+        userclazz.iduser = Number(sessionStorage.getItem('iduser'));
+        event.userclazz = userclazz;
+        return this.http.post('/eventsbyuser', event);
     }
     saveevents(event) {
-        let user = new _user__WEBPACK_IMPORTED_MODULE_2__["User"]();
-        user.iduser = Number(sessionStorage.getItem('iduser'));
+        let userclazz = new _userclazz__WEBPACK_IMPORTED_MODULE_2__["Userclazz"]();
+        userclazz.iduser = Number(sessionStorage.getItem('iduser'));
         let allevent = new _allevent__WEBPACK_IMPORTED_MODULE_3__["Allevent"]();
         allevent.idevent = Number(sessionStorage.getItem('idevent'));
-        event.user = user;
+        event.userclazz = userclazz;
         event.allevent = allevent;
-        return this.http.post("http://localhost:8080/event", event);
+        return this.http.post("/event", event);
     }
     logoutevent() {
         let event = new _event__WEBPACK_IMPORTED_MODULE_1__["Event"]();
-        let user = new _user__WEBPACK_IMPORTED_MODULE_2__["User"]();
-        user.iduser = Number(sessionStorage.getItem('iduser'));
+        let userclazz = new _userclazz__WEBPACK_IMPORTED_MODULE_2__["Userclazz"]();
+        userclazz.iduser = Number(sessionStorage.getItem('iduser'));
         let allevent = new _allevent__WEBPACK_IMPORTED_MODULE_3__["Allevent"]();
         allevent.idevent = Number(sessionStorage.getItem('idevent'));
-        event.user = user;
+        event.userclazz = userclazz;
         event.allevent = allevent;
-        return this.http.post('http://localhost:8080/logoutevent', event);
+        return this.http.post('/logoutevent', event);
     }
     deleteaccount() {
         let event = new _event__WEBPACK_IMPORTED_MODULE_1__["Event"]();
-        let user = new _user__WEBPACK_IMPORTED_MODULE_2__["User"]();
-        user.iduser = Number(sessionStorage.getItem('iduser'));
-        event.user = user;
-        return this.http.post('http://localhost:8080/deleteaccount', event);
+        let userclazz = new _userclazz__WEBPACK_IMPORTED_MODULE_2__["Userclazz"]();
+        userclazz.iduser = Number(sessionStorage.getItem('iduser'));
+        event.userclazz = userclazz;
+        return this.http.post('/deleteaccount', event);
     }
     deleteevent() {
         let event = new _event__WEBPACK_IMPORTED_MODULE_1__["Event"]();
         let allevent = new _allevent__WEBPACK_IMPORTED_MODULE_3__["Allevent"]();
         allevent.idevent = Number(sessionStorage.getItem('idevent'));
         event.allevent = allevent;
-        return this.http.post('http://localhost:8080/deleteevent', event);
+        return this.http.post('/deleteevent', event);
     }
     deleteevents(id) {
-        return this.http.delete('http://localhost:8080/event/' + id);
+        return this.http.delete('/event/' + id);
     }
 }
 EventService.ɵfac = function EventService_Factory(t) { return new (t || EventService)(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵinject"](_angular_common_http__WEBPACK_IMPORTED_MODULE_4__["HttpClient"])); };
@@ -551,7 +551,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/__ivy_ngcc__/fesm2015/core.js");
 /* harmony import */ var _allevent__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../allevent */ "./src/app/grouppage/allevent.ts");
 /* harmony import */ var _event__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../event */ "./src/app/grouppage/event.ts");
-/* harmony import */ var src_app_user__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! src/app/user */ "./src/app/user.ts");
+/* harmony import */ var src_app_userclazz__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! src/app/userclazz */ "./src/app/userclazz.ts");
 /* harmony import */ var src_app_user_service__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! src/app/user.service */ "./src/app/user.service.ts");
 /* harmony import */ var _event_service__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../event.service */ "./src/app/grouppage/event.service.ts");
 /* harmony import */ var _allevent_service__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../allevent.service */ "./src/app/grouppage/allevent.service.ts");
@@ -590,7 +590,7 @@ function EventComponent_tr_98_Template(rf, ctx) { if (rf & 1) {
 } if (rf & 2) {
     const event_r3 = ctx.$implicit;
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](2);
-    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtextInterpolate"](event_r3.user.username);
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtextInterpolate"](event_r3.userclazz.username);
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](2);
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtextInterpolate"](event_r3.remark);
 } }
@@ -603,7 +603,7 @@ class EventComponent {
         this.location = location;
         this.event = new _event__WEBPACK_IMPORTED_MODULE_2__["Event"]();
         this.allevent = new _allevent__WEBPACK_IMPORTED_MODULE_1__["Allevent"]();
-        this.user = new src_app_user__WEBPACK_IMPORTED_MODULE_3__["User"]();
+        this.userclazz = new src_app_userclazz__WEBPACK_IMPORTED_MODULE_3__["Userclazz"]();
         this.currentEventname = sessionStorage.getItem('eventname');
         this.currentEventlocation = sessionStorage.getItem('eventlocation');
         this.currentEventdescription = sessionStorage.getItem('eventdescription');
@@ -643,8 +643,8 @@ class EventComponent {
     //   );
     // }
     reloadAllusers() {
-        this.userService.findAll().subscribe(users => {
-            this.users = users;
+        this.userService.findAll().subscribe(userclazzs => {
+            this.userclazzs = userclazzs;
         });
     }
     logoutevent() {
@@ -665,6 +665,7 @@ class EventComponent {
             sessionStorage.setItem('eventdate', JSON.stringify(currentEvent.eventdate));
             sessionStorage.setItem('idevent', JSON.stringify(currentEvent.idevent));
             window.location.reload(true);
+            //this.router.navigate(['events'])
         });
     }
     logout() {
@@ -982,7 +983,7 @@ EventComponent.ɵcmp = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineCom
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "GrouppageComponent", function() { return GrouppageComponent; });
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/__ivy_ngcc__/fesm2015/core.js");
-/* harmony import */ var src_app_user__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! src/app/user */ "./src/app/user.ts");
+/* harmony import */ var src_app_userclazz__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! src/app/userclazz */ "./src/app/userclazz.ts");
 /* harmony import */ var _event__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./event */ "./src/app/grouppage/event.ts");
 /* harmony import */ var _allevent__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./allevent */ "./src/app/grouppage/allevent.ts");
 /* harmony import */ var _user_service__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../user.service */ "./src/app/user.service.ts");
@@ -1008,7 +1009,7 @@ class GrouppageComponent {
         this.router = router;
         this.event = new _event__WEBPACK_IMPORTED_MODULE_2__["Event"]();
         this.allevent = new _allevent__WEBPACK_IMPORTED_MODULE_3__["Allevent"]();
-        this.user = new src_app_user__WEBPACK_IMPORTED_MODULE_1__["User"]();
+        this.userclazz = new src_app_userclazz__WEBPACK_IMPORTED_MODULE_1__["Userclazz"]();
         this.currentUsername = sessionStorage.getItem('username');
         this.currentID = sessionStorage.getItem('iduser');
     }
@@ -1148,7 +1149,7 @@ GrouppageComponent.ɵcmp = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefin
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](52, "form");
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](53, "button", 26);
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵlistener"]("click", function GrouppageComponent_Template_button_click_53_listener() { return ctx.deleteregistration(ctx.currentID); });
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](54, "Aanwezigen verwijderen");
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](54, "Account verwijderen");
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
@@ -1639,16 +1640,16 @@ class UserService {
         this.http = http;
     }
     findAll() {
-        return this.http.get('http://localhost:8080/register');
+        return this.http.get('/register');
     }
     save(registration) {
-        return this.http.post('http://localhost:8080/register', registration);
+        return this.http.post('/register', registration);
     }
     delete(iduser) {
-        return this.http.delete('http://localhost:8080/register/' + iduser);
+        return this.http.delete('/register/' + iduser);
     }
     savelogin(login) {
-        return this.http.post('http://localhost:8080/login', login);
+        return this.http.post('/login', login);
     }
 }
 UserService.ɵfac = function UserService_Factory(t) { return new (t || UserService)(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵinject"](_angular_common_http__WEBPACK_IMPORTED_MODULE_1__["HttpClient"])); };
@@ -1663,17 +1664,17 @@ UserService.ɵprov = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineInjec
 
 /***/ }),
 
-/***/ "./src/app/user.ts":
-/*!*************************!*\
-  !*** ./src/app/user.ts ***!
-  \*************************/
-/*! exports provided: User */
+/***/ "./src/app/userclazz.ts":
+/*!******************************!*\
+  !*** ./src/app/userclazz.ts ***!
+  \******************************/
+/*! exports provided: Userclazz */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "User", function() { return User; });
-class User {
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Userclazz", function() { return Userclazz; });
+class Userclazz {
     constructor() {
         this.iduser = 0;
     }

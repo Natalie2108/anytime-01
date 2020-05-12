@@ -47,19 +47,14 @@ public class EventController {
 
     @PostMapping("/eventsbyuser")
     public List<Event> findByUser(@RequestBody Event event) {
-        return (List<Event>) eventService.findByUser(event.getUser().getIduser());
+        return (List<Event>) eventService.findByUser(event.getUserclazz().getIduser());
     }
-
-
-
-
-
 
 
     // AFMELDEN VOOR EVENT
     @GetMapping("/testafmelden")
     public List<Integer> LogoutEvent(@RequestBody Event event) {
-        return eventService.findIdByUserAndEvent(event.getUser().getIduser(), event.getAllevent().getIdevent());
+        return eventService.findIdByUserAndEvent(event.getUserclazz().getIduser(), event.getAllevent().getIdevent());
     }
 
     @PostMapping("/logoutevent")
@@ -72,7 +67,7 @@ public class EventController {
 
     @GetMapping("/testaccountdelete")
     public List<Integer> removeaccount(@RequestBody Event event) {
-        return eventService.findIdByUser(event.getUser().getIduser());
+        return eventService.findIdByUser(event.getUserclazz().getIduser());
     }
 
     @PostMapping("/deleteaccount")

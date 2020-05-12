@@ -31,6 +31,7 @@ public class Event {
     public Event() {
     }
 
+
     public int getId() {
         return id;
     }
@@ -39,11 +40,19 @@ public class Event {
         this.id = id;
     }
 
-    public Userclazz getUser() {
+    public String getRemark() {
+        return remark;
+    }
+
+    public void setRemark(String remark) {
+        this.remark = remark;
+    }
+
+    public Userclazz getUserclazz() {
         return userclazz;
     }
 
-    public void setUser(Userclazz userclazz) {
+    public void setUserclazz(Userclazz userclazz) {
         this.userclazz = userclazz;
     }
 
@@ -55,20 +64,12 @@ public class Event {
         this.allevent = allevent;
     }
 
-    public String getRemark() {
-        return remark;
-    }
-
-    public void setRemark(String remark) {
-        this.remark = remark;
-    }
-
     @Override
     public String toString() {
         return "[Event: " +
                 "[" + "id: " + id +
                 ", " + "remark: " + remark +
                 ", " + "allevent: " + allevent +
-                ", " + "user: " + userclazz + "]";
+                ", " + "userclazz: " + userclazz + "]";
     }
 }

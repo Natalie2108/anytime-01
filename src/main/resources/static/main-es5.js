@@ -143,7 +143,9 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       factory: function AppRoutingModule_Factory(t) {
         return new (t || AppRoutingModule)();
       },
-      imports: [[_angular_router__WEBPACK_IMPORTED_MODULE_1__["RouterModule"].forRoot(routes)], _angular_router__WEBPACK_IMPORTED_MODULE_1__["RouterModule"]]
+      imports: [[_angular_router__WEBPACK_IMPORTED_MODULE_1__["RouterModule"].forRoot(routes, {
+        useHash: true
+      })], _angular_router__WEBPACK_IMPORTED_MODULE_1__["RouterModule"]]
     });
 
     (function () {
@@ -159,7 +161,9 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵsetClassMetadata"](AppRoutingModule, [{
         type: _angular_core__WEBPACK_IMPORTED_MODULE_0__["NgModule"],
         args: [{
-          imports: [_angular_router__WEBPACK_IMPORTED_MODULE_1__["RouterModule"].forRoot(routes)],
+          imports: [_angular_router__WEBPACK_IMPORTED_MODULE_1__["RouterModule"].forRoot(routes, {
+            useHash: true
+          })],
           exports: [_angular_router__WEBPACK_IMPORTED_MODULE_1__["RouterModule"]]
         }]
       }], null, null);
@@ -355,7 +359,10 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       factory: function AppModule_Factory(t) {
         return new (t || AppModule)();
       },
-      providers: [],
+      providers: [{
+        provide: _angular_common__WEBPACK_IMPORTED_MODULE_10__["LocationStrategy"],
+        useClass: _angular_common__WEBPACK_IMPORTED_MODULE_10__["HashLocationStrategy"]
+      }],
       imports: [[_angular_platform_browser__WEBPACK_IMPORTED_MODULE_0__["BrowserModule"], _angular_common__WEBPACK_IMPORTED_MODULE_10__["CommonModule"], _app_routing_module__WEBPACK_IMPORTED_MODULE_7__["AppRoutingModule"], _angular_common_http__WEBPACK_IMPORTED_MODULE_3__["HttpClientModule"], _angular_forms__WEBPACK_IMPORTED_MODULE_4__["FormsModule"]]]
     });
 
@@ -374,7 +381,10 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         args: [{
           declarations: [_app_component__WEBPACK_IMPORTED_MODULE_2__["AppComponent"], _grouppage_grouppage_component__WEBPACK_IMPORTED_MODULE_5__["GrouppageComponent"], _grouppage_calendar_calendar_component__WEBPACK_IMPORTED_MODULE_6__["CalendarComponent"], _homepage_homepage_component__WEBPACK_IMPORTED_MODULE_8__["HomepageComponent"], _grouppage_event_event_component__WEBPACK_IMPORTED_MODULE_9__["EventComponent"], _page_not_found_page_not_found_component__WEBPACK_IMPORTED_MODULE_11__["PageNotFoundComponent"], _page_not_found_login_page_not_found_login_component__WEBPACK_IMPORTED_MODULE_12__["PageNotFoundLoginComponent"], _page_not_found_register_page_not_found_register_component__WEBPACK_IMPORTED_MODULE_13__["PageNotFoundRegisterComponent"]],
           imports: [_angular_platform_browser__WEBPACK_IMPORTED_MODULE_0__["BrowserModule"], _angular_common__WEBPACK_IMPORTED_MODULE_10__["CommonModule"], _app_routing_module__WEBPACK_IMPORTED_MODULE_7__["AppRoutingModule"], _angular_common_http__WEBPACK_IMPORTED_MODULE_3__["HttpClientModule"], _angular_forms__WEBPACK_IMPORTED_MODULE_4__["FormsModule"]],
-          providers: [],
+          providers: [{
+            provide: _angular_common__WEBPACK_IMPORTED_MODULE_10__["LocationStrategy"],
+            useClass: _angular_common__WEBPACK_IMPORTED_MODULE_10__["HashLocationStrategy"]
+          }],
           bootstrap: [_app_component__WEBPACK_IMPORTED_MODULE_2__["AppComponent"]]
         }]
       }], null, null);
@@ -425,22 +435,22 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       _createClass(AlleventService, [{
         key: "findAllallevents",
         value: function findAllallevents() {
-          return this.http.get('http://localhost:8080/allevent');
+          return this.http.get('/allevent');
         }
       }, {
         key: "saveallevents",
         value: function saveallevents(allevents) {
-          return this.http.post('http://localhost:8080/allevent', allevents);
+          return this.http.post('/allevent', allevents);
         }
       }, {
         key: "deleteallevents",
         value: function deleteallevents(idevent) {
-          return this.http["delete"]('http://localhost:8080/allevent/' + idevent);
+          return this.http["delete"]('/allevent/' + idevent);
         }
       }, {
         key: "findevent",
         value: function findevent(allevent) {
-          return this.http.post('http://localhost:8080/findevent', allevent);
+          return this.http.post('/findevent', allevent);
         }
       }]);
 
@@ -865,9 +875,9 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
     /* harmony import */
 
 
-    var _user__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(
-    /*! ../user */
-    "./src/app/user.ts");
+    var _userclazz__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(
+    /*! ../userclazz */
+    "./src/app/userclazz.ts");
     /* harmony import */
 
 
@@ -895,48 +905,48 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
           var allevent = new _allevent__WEBPACK_IMPORTED_MODULE_3__["Allevent"]();
           allevent.idevent = Number(sessionStorage.getItem('idevent'));
           event.allevent = allevent;
-          return this.http.post('http://localhost:8080/eventsbyevent', event);
+          return this.http.post('/eventsbyevent', event);
         }
       }, {
         key: "findAlleventsbyuser",
         value: function findAlleventsbyuser() {
           var event = new _event__WEBPACK_IMPORTED_MODULE_1__["Event"]();
-          var user = new _user__WEBPACK_IMPORTED_MODULE_2__["User"]();
-          user.iduser = Number(sessionStorage.getItem('iduser'));
-          event.user = user;
-          return this.http.post('http://localhost:8080/eventsbyuser', event);
+          var userclazz = new _userclazz__WEBPACK_IMPORTED_MODULE_2__["Userclazz"]();
+          userclazz.iduser = Number(sessionStorage.getItem('iduser'));
+          event.userclazz = userclazz;
+          return this.http.post('/eventsbyuser', event);
         }
       }, {
         key: "saveevents",
         value: function saveevents(event) {
-          var user = new _user__WEBPACK_IMPORTED_MODULE_2__["User"]();
-          user.iduser = Number(sessionStorage.getItem('iduser'));
+          var userclazz = new _userclazz__WEBPACK_IMPORTED_MODULE_2__["Userclazz"]();
+          userclazz.iduser = Number(sessionStorage.getItem('iduser'));
           var allevent = new _allevent__WEBPACK_IMPORTED_MODULE_3__["Allevent"]();
           allevent.idevent = Number(sessionStorage.getItem('idevent'));
-          event.user = user;
+          event.userclazz = userclazz;
           event.allevent = allevent;
-          return this.http.post("http://localhost:8080/event", event);
+          return this.http.post("/event", event);
         }
       }, {
         key: "logoutevent",
         value: function logoutevent() {
           var event = new _event__WEBPACK_IMPORTED_MODULE_1__["Event"]();
-          var user = new _user__WEBPACK_IMPORTED_MODULE_2__["User"]();
-          user.iduser = Number(sessionStorage.getItem('iduser'));
+          var userclazz = new _userclazz__WEBPACK_IMPORTED_MODULE_2__["Userclazz"]();
+          userclazz.iduser = Number(sessionStorage.getItem('iduser'));
           var allevent = new _allevent__WEBPACK_IMPORTED_MODULE_3__["Allevent"]();
           allevent.idevent = Number(sessionStorage.getItem('idevent'));
-          event.user = user;
+          event.userclazz = userclazz;
           event.allevent = allevent;
-          return this.http.post('http://localhost:8080/logoutevent', event);
+          return this.http.post('/logoutevent', event);
         }
       }, {
         key: "deleteaccount",
         value: function deleteaccount() {
           var event = new _event__WEBPACK_IMPORTED_MODULE_1__["Event"]();
-          var user = new _user__WEBPACK_IMPORTED_MODULE_2__["User"]();
-          user.iduser = Number(sessionStorage.getItem('iduser'));
-          event.user = user;
-          return this.http.post('http://localhost:8080/deleteaccount', event);
+          var userclazz = new _userclazz__WEBPACK_IMPORTED_MODULE_2__["Userclazz"]();
+          userclazz.iduser = Number(sessionStorage.getItem('iduser'));
+          event.userclazz = userclazz;
+          return this.http.post('/deleteaccount', event);
         }
       }, {
         key: "deleteevent",
@@ -945,12 +955,12 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
           var allevent = new _allevent__WEBPACK_IMPORTED_MODULE_3__["Allevent"]();
           allevent.idevent = Number(sessionStorage.getItem('idevent'));
           event.allevent = allevent;
-          return this.http.post('http://localhost:8080/deleteevent', event);
+          return this.http.post('/deleteevent', event);
         }
       }, {
         key: "deleteevents",
         value: function deleteevents(id) {
-          return this.http["delete"]('http://localhost:8080/event/' + id);
+          return this.http["delete"]('/event/' + id);
         }
       }]);
 
@@ -1053,9 +1063,9 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
     /* harmony import */
 
 
-    var src_app_user__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(
-    /*! src/app/user */
-    "./src/app/user.ts");
+    var src_app_userclazz__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(
+    /*! src/app/userclazz */
+    "./src/app/userclazz.ts");
     /* harmony import */
 
 
@@ -1135,7 +1145,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](2);
 
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtextInterpolate"](event_r3.user.username);
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtextInterpolate"](event_r3.userclazz.username);
 
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](2);
 
@@ -1154,7 +1164,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         this.location = location;
         this.event = new _event__WEBPACK_IMPORTED_MODULE_2__["Event"]();
         this.allevent = new _allevent__WEBPACK_IMPORTED_MODULE_1__["Allevent"]();
-        this.user = new src_app_user__WEBPACK_IMPORTED_MODULE_3__["User"]();
+        this.userclazz = new src_app_userclazz__WEBPACK_IMPORTED_MODULE_3__["Userclazz"]();
         this.currentEventname = sessionStorage.getItem('eventname');
         this.currentEventlocation = sessionStorage.getItem('eventlocation');
         this.currentEventdescription = sessionStorage.getItem('eventdescription');
@@ -1227,8 +1237,8 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         value: function reloadAllusers() {
           var _this8 = this;
 
-          this.userService.findAll().subscribe(function (users) {
-            _this8.users = users;
+          this.userService.findAll().subscribe(function (userclazzs) {
+            _this8.userclazzs = userclazzs;
           });
         }
       }, {
@@ -1261,7 +1271,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
             sessionStorage.setItem('eventdateformatted', currentEvent.eventdateformatted);
             sessionStorage.setItem('eventdate', JSON.stringify(currentEvent.eventdate));
             sessionStorage.setItem('idevent', JSON.stringify(currentEvent.idevent));
-            window.location.reload(true);
+            window.location.reload(true); //this.router.navigate(['events'])
           });
         }
       }, {
@@ -1941,9 +1951,9 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
     /* harmony import */
 
 
-    var src_app_user__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(
-    /*! src/app/user */
-    "./src/app/user.ts");
+    var src_app_userclazz__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(
+    /*! src/app/userclazz */
+    "./src/app/userclazz.ts");
     /* harmony import */
 
 
@@ -1997,7 +2007,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         this.router = router;
         this.event = new _event__WEBPACK_IMPORTED_MODULE_2__["Event"]();
         this.allevent = new _allevent__WEBPACK_IMPORTED_MODULE_3__["Allevent"]();
-        this.user = new src_app_user__WEBPACK_IMPORTED_MODULE_1__["User"]();
+        this.userclazz = new src_app_userclazz__WEBPACK_IMPORTED_MODULE_1__["Userclazz"]();
         this.currentUsername = sessionStorage.getItem('username');
         this.currentID = sessionStorage.getItem('iduser');
       }
@@ -2284,7 +2294,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
             return ctx.deleteregistration(ctx.currentID);
           });
 
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](54, "Aanwezigen verwijderen");
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](54, "Account verwijderen");
 
           _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
 
@@ -3309,22 +3319,22 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       _createClass(UserService, [{
         key: "findAll",
         value: function findAll() {
-          return this.http.get('http://localhost:8080/register');
+          return this.http.get('/register');
         }
       }, {
         key: "save",
         value: function save(registration) {
-          return this.http.post('http://localhost:8080/register', registration);
+          return this.http.post('/register', registration);
         }
       }, {
         key: "delete",
         value: function _delete(iduser) {
-          return this.http["delete"]('http://localhost:8080/register/' + iduser);
+          return this.http["delete"]('/register/' + iduser);
         }
       }, {
         key: "savelogin",
         value: function savelogin(login) {
-          return this.http.post('http://localhost:8080/login', login);
+          return this.http.post('/login', login);
         }
       }]);
 
@@ -3359,27 +3369,27 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
   },
 
   /***/
-  "./src/app/user.ts":
-  /*!*************************!*\
-    !*** ./src/app/user.ts ***!
-    \*************************/
+  "./src/app/userclazz.ts":
+  /*!******************************!*\
+    !*** ./src/app/userclazz.ts ***!
+    \******************************/
 
-  /*! exports provided: User */
+  /*! exports provided: Userclazz */
 
   /***/
-  function srcAppUserTs(module, __webpack_exports__, __webpack_require__) {
+  function srcAppUserclazzTs(module, __webpack_exports__, __webpack_require__) {
     "use strict";
 
     __webpack_require__.r(__webpack_exports__);
     /* harmony export (binding) */
 
 
-    __webpack_require__.d(__webpack_exports__, "User", function () {
-      return User;
+    __webpack_require__.d(__webpack_exports__, "Userclazz", function () {
+      return Userclazz;
     });
 
-    var User = function User() {
-      _classCallCheck(this, User);
+    var Userclazz = function Userclazz() {
+      _classCallCheck(this, Userclazz);
 
       this.iduser = 0;
     };
