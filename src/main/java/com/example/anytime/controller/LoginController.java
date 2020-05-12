@@ -16,7 +16,7 @@ import java.util.Optional;
 public class LoginController {
 
     @Autowired  private UserService userService;
-    Userclazz user;
+    Userclazz userclazz;
 
     @GetMapping("/test")
     public List<Userclazz> Login(@RequestBody Userclazz userclazz) {
@@ -32,7 +32,6 @@ public class LoginController {
             return new ResponseEntity<Userclazz>(currentUser.get(0), HttpStatus.OK);
         }
     }
-
 
 
     @GetMapping("/login/{id}")

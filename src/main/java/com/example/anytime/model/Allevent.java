@@ -1,12 +1,12 @@
 package com.example.anytime.model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
+import javax.persistence.*;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 public class Allevent {
@@ -17,8 +17,8 @@ public class Allevent {
     String eventname;
     String eventlocation;
     String eventdescription;
-    Date eventdate;
-    String eventdateformatted;
+    Date eventdate = new Date();
+    String eventdateformatted = "00-00-0000";
 
     public Allevent() {}
 
@@ -77,7 +77,7 @@ public class Allevent {
         return eventdateformatted;
     }
 
-     public void setEventdateformatted(String eventdateformatted) {
+    public void setEventdateformatted(String eventdateformatted) {
         this.eventdateformatted = eventdateformatted;
     }
 

@@ -1,7 +1,7 @@
 package com.example.anytime.controller;
 
-import com.example.anytime.model.Userclazz;
 import com.example.anytime.model.Message;
+import com.example.anytime.model.Userclazz;
 import com.example.anytime.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -18,6 +18,7 @@ public class RegisterController {
 
     @Autowired
     private UserService userService;
+    private Userclazz userclazz;
 
     @GetMapping("/test1")
     public List<Userclazz> usernameCheck(@RequestBody Userclazz userclazz) {
@@ -37,15 +38,20 @@ public class RegisterController {
         }
     }
 
+    @ResponseStatus(value = HttpStatus.OK)
+    @DeleteMapping("/register/{iduser}")
+    public void delete(@PathVariable int iduser) {
+        userService.deleteById(iduser);
+    }
 
     @GetMapping("/register")
     public List<Userclazz> findAll() {
-        return (List<Userclazz>) userService.findAll();
+        return (List<Userclazz>) userService.findAllOrderedById(userclazz);
     }
 
     @GetMapping("/register/{id}")
-    public Optional<Userclazz> userById(@PathVariable  int id) {
-        return null;
+    public Optional<Userclazz> userById(@PathVariable  int iduser) {
+        return userService.findById(iduser);
     }
 
 

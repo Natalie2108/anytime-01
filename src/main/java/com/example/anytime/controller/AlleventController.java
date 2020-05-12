@@ -1,9 +1,12 @@
 package com.example.anytime.controller;
 
 import com.example.anytime.model.Allevent;
+import com.example.anytime.model.Message;
+import com.example.anytime.model.Userclazz;
 import com.example.anytime.service.AlleventService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -42,4 +45,16 @@ public class AlleventController {
         return alleventService.findById(idevent);
     }
 
+
+    @GetMapping("/testevent")
+    public List<Allevent> findevent(@RequestBody Allevent allevent) {
+        return (List<Allevent>) alleventService.findByEventname(allevent.getEventname());
+    }
+
+
+    @PostMapping("/findevent")
+    public ResponseEntity<?> findcurrentevent(@RequestBody Allevent allevent) {
+        List<Allevent> currentEvent = findevent(allevent);
+        return new ResponseEntity<Allevent>(currentEvent.get(0), HttpStatus.OK);
+    }
 }

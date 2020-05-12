@@ -1,9 +1,10 @@
 package com.example.anytime.model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
+import javax.persistence.*;
+import java.util.List;
+import java.util.Set;
 
 @Entity
 public class Userclazz {
@@ -14,13 +15,14 @@ public class Userclazz {
     String username;
     String password;
 
-    protected Userclazz() {}
+    public Userclazz() {}
 
     public Userclazz(int iduser, String username, String password) {
         this.iduser = iduser;
         this.username = username;
         this.password = password;
     }
+
 
     public int getIduser() {
         return iduser;

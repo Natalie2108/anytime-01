@@ -1,24 +1,34 @@
 package com.example.anytime.model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import org.w3c.dom.stylesheets.LinkStyle;
+
+import javax.persistence.*;
+import java.util.List;
 
 @Entity
 public class Event {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     int id;
-    String username;
     String remark;
 
-    protected Event() {}
+    @ManyToOne
+    Userclazz userclazz;
 
-    public Event(int id, String username, String remark) {
+    @ManyToOne
+    Allevent allevent;
+
+
+
+    public Event(int id, Userclazz userclazz, Allevent allevent, String remark) {
         this.id = id;
-        this.username = username;
+        this.userclazz = userclazz;
+        this.allevent = allevent;
         this.remark = remark;
+    }
+
+    public Event() {
     }
 
     public int getId() {
@@ -29,12 +39,20 @@ public class Event {
         this.id = id;
     }
 
-    public String getUsername() {
-        return username;
+    public Userclazz getUser() {
+        return userclazz;
     }
 
-    public void setUsername(String username) {
-        this.username = username;
+    public void setUser(Userclazz userclazz) {
+        this.userclazz = userclazz;
+    }
+
+    public Allevent getAllevent() {
+        return allevent;
+    }
+
+    public void setAllevent(Allevent allevent) {
+        this.allevent = allevent;
     }
 
     public String getRemark() {
@@ -47,10 +65,10 @@ public class Event {
 
     @Override
     public String toString() {
-        return "[Event: [" +
-                "id: " + id + ", " +
-                "username: " + username + ", " +
-                "opmerking: " + remark +
-                "]";
+        return "[Event: " +
+                "[" + "id: " + id +
+                ", " + "remark: " + remark +
+                ", " + "allevent: " + allevent +
+                ", " + "user: " + userclazz + "]";
     }
 }

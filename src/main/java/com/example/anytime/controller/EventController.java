@@ -1,11 +1,14 @@
 package com.example.anytime.controller;
 
 import com.example.anytime.model.Event;
+import com.example.anytime.model.Userclazz;
 import com.example.anytime.service.EventService;
+import com.example.anytime.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.Optional;
 
 @CrossOrigin(origins = "https://anytimers.herokuapp.com")
@@ -14,6 +17,7 @@ public class EventController {
 
     @Autowired
     EventService eventService;
+    UserService userService;
 
     @PostMapping("/event")
     public Event save(@RequestBody Event event) {
@@ -34,6 +38,74 @@ public class EventController {
     public Optional<Event> findById(@PathVariable  int id) {
         return eventService.findById(id);
     }
+
+
+    @PostMapping("/eventsbyevent")
+    public List<Event> findByEvent(@RequestBody Event event) {
+        return (List<Event>) eventService.findByEvent(event.getAllevent().getIdevent());
+    }
+
+    @PostMapping("/eventsbyuser")
+    public List<Event> findByUser(@RequestBody Event event) {
+        return (List<Event>) eventService.findByUser(event.getUser().getIduser());
+    }
+
+
+
+
+
+
+
+    // AFMELDEN VOOR EVENT
+    @GetMapping("/testafmelden")
+    public List<Integer> LogoutEvent(@RequestBody Event event) {
+        return eventService.findIdByUserAndEvent(event.getUser().getIduser(), event.getAllevent().getIdevent());
+    }
+
+    @PostMapping("/logoutevent")
+    public void delete(@RequestBody Event event){
+        List<Integer> currentIDList = LogoutEvent(event);
+        for (int i = 0; i < currentIDList.size(); i++) {
+            eventService.deleteById(currentIDList.get(i));
+        }
+    }
+
+    @GetMapping("/testaccountdelete")
+    public List<Integer> removeaccount(@RequestBody Event event) {
+        return eventService.findIdByUser(event.getUser().getIduser());
+    }
+
+    @PostMapping("/deleteaccount")
+    public void deleteaccount(@RequestBody Event event){
+        List<Integer> currentIDList = removeaccount(event);
+        for (int i = 0; i < currentIDList.size(); i++) {
+            eventService.deleteById(currentIDList.get(i));
+        }
+    }
+
+    @GetMapping("/testeventdelete")
+    public List<Integer> removeevent(@RequestBody Event event) {
+        return eventService.findIdByEvent(event.getAllevent().getIdevent());
+    }
+
+    @PostMapping("/deleteevent")
+    public void deleteevent(@RequestBody Event event){
+        List<Integer> currentIDList = removeevent(event);
+        for (int i = 0; i < currentIDList.size(); i++) {
+            eventService.deleteById(currentIDList.get(i));
+        }
+    }
+
+
+//    @PostMapping("/logoutevent")
+//    public ResponseEntity<?> deleteUserEvent(@RequestBody Event event) {
+//        List<Event> currentUser = LogoutEvent(event);
+//        if (currentUser.isEmpty()){
+//            return new ResponseEntity<Message>(new Message("not valid"), HttpStatus.UNAUTHORIZED);
+//        } else {
+//            return new ResponseEntity<User>(currentUser.get(0), HttpStatus.OK);
+//        }
+//    }
 
 
 }
