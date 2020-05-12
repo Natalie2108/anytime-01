@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 import java.util.Optional;
 
-@CrossOrigin(origins = "https://infinite-shore-94119.herokuapp.com")
+@CrossOrigin(origins = "https://anytimers.herokuapp.com")
 @RestController
 public class LoginController {
 
